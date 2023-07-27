@@ -3,12 +3,297 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:paddingTop="12sp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player One" />
+
+            <TextView
+                android:id="@+id/p1_score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player Two" />
+
+            <TextView
+                android:id="@+id/p2_score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/winner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player X won the match" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="4sp"
+            android:paddingTop="12sp"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_1_1"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_1_2"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_1_3"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+        <!-- Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="4sp"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_2_1"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_2_2"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_2_3"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+        <!-- Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="4sp"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_3_1"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_3_2"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:layout_weight="1">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tick_3_3"
+                    android:layout_width="0sp"
+                    android:layout_height="0sp"
+                    android:backgroundTint="@color/black"
+                    app:cardCornerRadius="16sp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+
+        android:paddingTop="12sp"
+        android:paddingBottom="20sp"
+
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Reset" />
+    </LinearLayout>
+
 
 </LinearLayout>
