@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 0;
     private static final int REQUEST_DISCOVERABLE_BT = 0;
+    private static final int BLUETOOTH_CONNECT_CODE = 1;
+    private static final int BLUETOOTH_SCAN_CODE = 2;
     private Context context;
 
     @Override
@@ -37,13 +40,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!mBluetoothAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                    if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
 
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
+                    if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        askPermission(android.Manifest.permission.BLUETOOTH_CONNECT, BLUETOOTH_CONNECT_CODE);
                         return;
                     }
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
@@ -53,14 +52,9 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+
                 if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+                    askPermission(android.Manifest.permission.BLUETOOTH_SCAN, BLUETOOTH_SCAN_CODE);
                     return;
                 }
                 if (!mBluetoothAdapter.isDiscovering()) {
@@ -76,14 +70,9 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+
                 if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+                    askPermission(android.Manifest.permission.BLUETOOTH_CONNECT, BLUETOOTH_CONNECT_CODE);
                     return;
                 }
                 mBluetoothAdapter.disable();
@@ -94,7 +83,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    private void askPermission(String permission, int code) {
+        if (!ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, permission)) {
+            requestPermissions(new String[]{permission}, code);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
+            return;
+
+        switch (requestCode) {
+            case BLUETOOTH_CONNECT_CODE:
+
+                break;
+
+        }
+
+        Toast.makeText(context, "Press the button again.", Toast.LENGTH_SHORT).show();
     }
 }
