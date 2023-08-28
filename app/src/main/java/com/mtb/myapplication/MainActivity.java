@@ -2,11 +2,13 @@ package com.mtb.myapplication;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    TextView hello_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
+        hello_text = findViewById(R.id.hello_text);
 
     }
 
