@@ -1,14 +1,33 @@
 package com.mtb.myapplication;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    TextView hello_text;
+    ListView listView;
+    ProgressBar progressBar;
+    private static final String JSON_URL = "https://thud.fcsevn.com/get-data1";
+    List<Tutorial> lst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +40,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        hello_text = findViewById(R.id.hello_text);
-
+        listView = findViewById(R.id.listView);
+        lst = new ArrayList<>();
+        progressBar = findViewById(R.id.progessBar);
     }
 
     private void bindData() {
-
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
-        // return;
-        // }
+        loadTutorials();
     }
 
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        switch (requestCode) {
-            case 1:
-                break;
-        }
+    private void loadTutorials() {
+        progressBar.setVisibility(View.VISIBLE);
+        StringRequest sReq = new StringRequest(Request.Method.GET, JSON_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressBar.setVisibility(View.INVISIBLE);
+                try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray arr = object.getJSONArray("tutorials");
+                    for (int i = 0; i < arr.length(); i++) {
+                        JSONObject tutObj = arr.getJSONObject(i);
+                        Tutorial tut = new Tutorial(tutObj.getString("name"), tutObj.getString("imageurl"), tutObj.getString("description"));
+                        lst.add(tut);
+                    }
+                    MyAdapter adapter = new MyAdapter(lst, getApplicationContext());
+                    listView.setAdapter(adapter);
+                } catch (JSONException e) {
+                    Log.w("Load tutorials: ", "Error: " + e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(sReq);
     }
 }
