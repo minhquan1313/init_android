@@ -1,14 +1,19 @@
 package com.mtb.myapplication;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    TextView hello_text;
+    TextView txtMsg;
+    Spinner sp;
+    String[] items = {"D0", "D1", "D2", "D3", "D4", "D5", "D6"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +26,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        hello_text = findViewById(R.id.hello_text);
-
+        txtMsg = findViewById(R.id.txtMsg);
+        sp = findViewById(R.id.spinner1);
     }
 
     private void bindData() {
+        ArrayAdapter<String> aa = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        sp.setAdapter(aa);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                txtMsg.setText(items[position]);
+            }
 
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
-        // return;
-        // }
-    }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        switch (requestCode) {
-            case 1:
-                break;
-        }
+            }
+        });
     }
 }
