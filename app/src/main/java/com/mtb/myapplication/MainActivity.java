@@ -1,14 +1,17 @@
 package com.mtb.myapplication;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
     TextView hello_text;
+    private Button btnNews;
+    private Button btnSports;
+    private Button btnScience;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +24,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        hello_text = findViewById(R.id.hello_text);
+        btnNews = findViewById(R.id.btnNews);
+        btnSports = findViewById(R.id.btnSports);
+        btnScience = findViewById(R.id.btnScience);
 
     }
 
     private void bindData() {
-
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
-        // return;
-        // }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        switch (requestCode) {
-            case 1:
-                break;
-        }
+        btnNews.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView1, NewsFragment.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack("name") // Name can be null
+                    .commit();
+        });
+        btnSports.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView1, SportsFragment.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack("name") // Name can be null
+                    .commit();
+        });
+        btnScience.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView1, ScienceFragment.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack("name") // Name can be null
+                    .commit();
+        });
     }
 }
