@@ -7,9 +7,20 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtMsg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="#ffffff"
+        android:text="Click a text below" />
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_secondary_variant"
+        android:numColumns="auto_fit"
+        android:columnWidth="100sp" />
 
 </LinearLayout>
