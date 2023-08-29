@@ -1,20 +1,35 @@
 package com.mtb.myapplication;
 
 import android.Manifest;
+<<<<<<< HEAD
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+=======
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+>>>>>>> 36210ca8d7e4380ae7cf6d66559483affea6790c
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.provider.MediaStore;
+=======
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+>>>>>>> 36210ca8d7e4380ae7cf6d66559483affea6790c
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
+=======
+>>>>>>> 36210ca8d7e4380ae7cf6d66559483affea6790c
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -82,7 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 stopRecording();
             }
         });
+    }
 
+    private boolean checkPermissions() {
+        int first = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
+        int second = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return first == PackageManager.PERMISSION_GRANTED && second == PackageManager.PERMISSION_GRANTED;
     }
 
     public void startRecording() throws IOException {
