@@ -1,14 +1,18 @@
 package com.mtb.myapplication;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    TextView hello_text;
+    TextView txtMsg;
+    AutoCompleteTextView txtAutoComplete;
+    String[] items = {"words", "starting", "with", "set", "Setback", "Setline", "Setoffs", "Setouts", "Setters", "Setting", "Settled", "Settler", "Wordless", "Wordiness", "Adios"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +25,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        hello_text = findViewById(R.id.hello_text);
+        txtMsg = findViewById(R.id.txtMsg);
+        txtAutoComplete = findViewById(R.id.autoComplete1);
 
     }
 
     private void bindData() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, items);
+        txtAutoComplete.setAdapter(adapter);
+        txtAutoComplete.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                txtMsg.setText(txtAutoComplete.getText());
+            }
 
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
-        // return;
-        // }
-    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
 
-        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
+            @Override
+            public void afterTextChanged(Editable s) {
 
-        switch (requestCode) {
-            case 1:
-                break;
-        }
+            }
+        });
     }
 }
