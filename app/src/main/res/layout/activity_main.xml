@@ -7,9 +7,28 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:gravity="center"
+        android:paddingVertical="12sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="#e74c3c"
+        android:textColor="#ecf0f1"
+        android:text="Cancle - 3" />
+
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Exit" />
+
+    <Button
+        android:id="@+id/traditionalBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Traditional list" />
 
 </LinearLayout>
