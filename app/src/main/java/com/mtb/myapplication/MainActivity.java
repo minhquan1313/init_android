@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, R.layout.my_list_view, R.id.textViewLV, items);
         listView.setAdapter(adapter);
+
+        registerForContextMenu(listView);
     }
 
     // When hold an item and the floating appear
