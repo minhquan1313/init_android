@@ -7,9 +7,39 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="17sp"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Dynamic Fragment Example" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="First Fragment" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Second Fragment" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
