@@ -6,10 +6,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <EditText
+        android:id="@+id/edtMsg"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Hello wordl!" />
 
 </LinearLayout>

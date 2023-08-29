@@ -1,14 +1,16 @@
 package com.mtb.myapplication;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    TextView hello_text;
+    EditText edtMsg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,34 +23,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        hello_text = findViewById(R.id.hello_text);
-
+        edtMsg = findViewById(R.id.edtMsg);
     }
 
     private void bindData() {
 
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
-        // return;
-        // }
     }
 
     @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        setTitle("Hé lô mấy cưng");
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-        if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        switch (requestCode) {
-            case 1:
-                break;
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_search) {
+            edtMsg.setText("Search...");
+            return true;
+        } else if (id == R.id.action_share) {
+            edtMsg.setText("Share...");
+            return true;
+        } else if (id == R.id.action_download) {
+            edtMsg.setText("Download...");
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
