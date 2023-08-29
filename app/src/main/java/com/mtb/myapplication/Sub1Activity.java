@@ -1,6 +1,5 @@
 package com.mtb.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,12 +7,12 @@ import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class Sub1Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sub1);
 
         bindComponents();
 
@@ -25,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setLogo(R.drawable.bull_logo);
-
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Sub 1 ne :>");
     }
 
     private void bindData() {
@@ -42,15 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.sub1) {
-            Intent sub1 = new Intent(this, Sub1Activity.class);
-            startActivity(sub1);
-
-            return true;
-        }
-        if (id == R.id.sub2) {
-
-            return true;
+        if (id == android.R.id.home) {
+            this.finish();
         }
 
         return super.onOptionsItemSelected(item);
