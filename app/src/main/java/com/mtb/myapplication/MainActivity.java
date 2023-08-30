@@ -1,5 +1,6 @@
 package com.mtb.myapplication;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -12,9 +13,11 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
-    Activity context = MainActivity.this;
+    Activity activity = MainActivity.this;
+    Context context = MainActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindData() {
-        // if (ActivityCompat.checkSelfPermission(context,
-        // Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(context, Manifest.permission.BLUETOOTH, 1);
-        // return;
-        // }
 
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            Utils.askPermission(activity, Manifest.permission.INTERNET, 1);
+            return;
+        }
     }
 
     @Override
@@ -60,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
+
             if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
+
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
