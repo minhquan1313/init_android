@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String MY_SHARED_PREF = "MySharedPref";
     Activity activity = MainActivity.this;
     Context context = MainActivity.this;
     EditText input_name1, input_class1, input_age1;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences preferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(MY_SHARED_PREF, MODE_PRIVATE);
 
         String strName = preferences.getString("name", "");
         String strClass = preferences.getString("class", "");
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        SharedPreferences preferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(MY_SHARED_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putString("name", input_name1.getText().toString());
