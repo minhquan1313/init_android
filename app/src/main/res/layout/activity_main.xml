@@ -5,14 +5,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16sp"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/hello_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:gravity="center"
-        android:text="Hello World!" />
+        android:text="Internal Storage Example"
+        android:textSize="24sp" />
 
+    <EditText
+        android:id="@+id/input_txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12sp"
+        android:hint="Enter something" />
+
+    <Button
+        android:id="@+id/btn_save1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/btn_load1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load" />
+
+    <TextView
+        android:id="@+id/txt_data1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:textSize="16sp" />
 </LinearLayout>
