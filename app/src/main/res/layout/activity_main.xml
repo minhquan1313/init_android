@@ -13,6 +13,26 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:gravity="center"
-        android:text="Hello World!" />
+        android:text="Shared Preferences Example" />
 
+    <EditText
+        android:id="@+id/input_name1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12sp"
+        android:hint="Enter your name" />
+
+    <EditText
+        android:id="@+id/input_class1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12sp"
+        android:hint="Enter your class" />
+
+    <EditText
+        android:id="@+id/input_age1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12sp"
+        android:hint="Enter your age" />
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.mtb.myapplication;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 public class MainActivity extends AppCompatActivity {
     Activity activity = MainActivity.this;
     Context context = MainActivity.this;
+    EditText input_name1, input_class1, input_age1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        // hello_text = findViewById(R.id.hello_text);
+        input_name1 = findViewById(R.id.input_name1);
+        input_class1 = findViewById(R.id.input_class1);
+        input_age1 = findViewById(R.id.input_age1);
 
     }
 
@@ -40,6 +44,35 @@ public class MainActivity extends AppCompatActivity {
             Utils.askPermission(activity, Manifest.permission.INTERNET, 1);
             return;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences preferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+        String strName = preferences.getString("name", "");
+        String strClass = preferences.getString("class", "");
+        String strAge = preferences.getString("age", "");
+
+        input_name1.setText(strName);
+        input_class1.setText(strClass);
+        input_age1.setText(strAge);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences preferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("name", input_name1.getText().toString());
+        editor.putString("class", input_class1.getText().toString());
+        editor.putString("age", input_age1.getText().toString());
+
+        editor.apply();
     }
 
     @Override
