@@ -3,19 +3,25 @@ package com.mtb.myapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    Activity context = MainActivity.this;
-    // TextView hello_text;
+    private Activity context = MainActivity.this;
+    private EditText name_input, tel_input, birthday_input;
+    private Button insert_btn, update_btn, delete_btn, view_all_btn;
+    private UserDB userDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindComponents() {
-        // hello_text = findViewById(R.id.hello_text);
+        name_input = findViewById(R.id.name_input);
+        tel_input = findViewById(R.id.tel_input);
+        birthday_input = findViewById(R.id.birthday_input);
+
+        insert_btn = findViewById(R.id.insert_btn);
+        update_btn = findViewById(R.id.update_btn);
+        delete_btn = findViewById(R.id.delete_btn);
+        view_all_btn = findViewById(R.id.view_all_btn);
+
+        userDB = new UserDB(context);
 
     }
 
@@ -41,6 +56,49 @@ public class MainActivity extends AppCompatActivity {
         // return;
         // }
 
+        insert_btn.setOnClickListener((View v) -> {
+            String birthDay = birthday_input.getText().toString();
+            String contact = tel_input.getText().toString();
+            String name = name_input.getText().toString();
+
+            boolean isSuccess = userDB.create(name, contact, birthDay);
+            Toast.makeText(context, "Thêm " + (isSuccess ? "Thành công" : "Thất bại"), Toast.LENGTH_SHORT).show();
+        });
+        update_btn.setOnClickListener((View v) -> {
+            String birthDay = birthday_input.getText().toString();
+            String contact = tel_input.getText().toString();
+            String name = name_input.getText().toString();
+
+            boolean isSuccess = userDB.update(name, contact, birthDay);
+            Toast.makeText(context, "Cập nhật " + (isSuccess ? "Thành công" : "Thất bại"), Toast.LENGTH_SHORT).show();
+        });
+        delete_btn.setOnClickListener((View v) -> {
+            String name = name_input.getText().toString();
+
+            boolean isSuccess = userDB.delete(name);
+            Toast.makeText(context, "Xoá " + (isSuccess ? "Thành công" : "Thất bại"), Toast.LENGTH_SHORT).show();
+        });
+        view_all_btn.setOnClickListener((View v) -> {
+            Cursor cursor = userDB.getAll();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (cursor.getCount() == 0) {
+                stringBuilder.append("Không có dữ liệu.");
+            } else
+                while (cursor.moveToNext()) {
+                    stringBuilder.append("Tên: ").append(cursor.getString(0)).append("\n");
+                    stringBuilder.append("SĐT: ").append(cursor.getString(1)).append("\n");
+                    stringBuilder.append("Sinh: ").append(cursor.getString(2)).append("\n");
+                }
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(context);
+            alert.setCancelable(true);
+            alert.setTitle("Các người dùng");
+            alert.setMessage(stringBuilder.toString());
+            alert.show();
+
+        });
+
     }
 
     @Override
@@ -51,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         switch (requestCode) {
-        case 1:
-            break;
+            case 1:
+                break;
         }
     }
 

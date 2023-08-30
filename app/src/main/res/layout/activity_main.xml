@@ -4,12 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20sp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Nhập thông tin bên dưới" />
+
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/tel_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số điện thoại"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/birthday_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sinh nhật"
+        android:inputType="date" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/insert_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm" />
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cập nhật" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xoá" />
+
+    <Button
+        android:id="@+id/view_all_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem dữ liệu trong SQL lite" />
 
 </LinearLayout>
