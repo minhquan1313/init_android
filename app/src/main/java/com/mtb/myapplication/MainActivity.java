@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     Activity context = MainActivity.this;
-    // TextView hello_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindData() {
-        // if (ActivityCompat.checkSelfPermission(this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT) !=
-        // PackageManager.PERMISSION_GRANTED) {
-        // Utils.askPermission(MainActivity.this,
-        // android.Manifest.permission.BLUETOOTH_CONNECT, 1);
+        // if (ActivityCompat.checkSelfPermission(context,
+        // Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+        // Utils.askPermission(context, Manifest.permission.BLUETOOTH, 1);
         // return;
         // }
 
@@ -51,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             return;
 
         switch (requestCode) {
-        case 1:
-            break;
+            case 1:
+                break;
         }
     }
 
